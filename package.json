@@ -1,0 +1,21 @@
+{
+  "name": "travel",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon --inspect src/index.js",
+    "beautiful": "prettier --single-quote --trailing-comman all --write 'src/**/*.{js,json,scss}"
+  },
+  "author": "lehaianh",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2",
+    "express-handlebars": "^8.0.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.4.2",
+    "sass": "^1.83.0"
+  }
+}
