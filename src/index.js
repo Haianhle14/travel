@@ -2,10 +2,13 @@ const path = require('path');
 const express = require('express');
 const hbs = require('express-handlebars');
 const router = require('./router/index');
+const db = require('./config/db/index')
 
 const app = express();
 const port = 4000;
 
+
+db.connect();
 app.use(express.static(path.join(__dirname, 'resources', 'public')));
 
 app.engine(
