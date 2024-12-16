@@ -2,12 +2,12 @@
     <div class="row">
         {{#each tours}}
         <div class="col-sm-6 col-lg-4">
-            <div class="card card-course-item">
-                <a href="">
+            <div class="card card-tour-item text-black">
+                <a href="/tours/{{this.slug}}">
                     <img src="{{this.image}}" class="card-img-top" alt="{{this.name}}">
                 </a>
                 <div class="card-body">
-                    <a href="">
+                    <a class="text-decoration-none text-black" href="/tours/{{this.slug}}">
                         <h5 class="card-title">{{this.name}}</h5>
                     </a>
                     <p class="card-text">{{this.description}}</p>
