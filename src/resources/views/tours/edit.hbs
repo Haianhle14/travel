@@ -1,0 +1,27 @@
+<div class="mt-4">
+    <h3>Cập nhật tour</h3>
+    <form class="mt-4" method="POST" action="/tours/{{tours._id}}?_method=PUT">
+        <div class="mb-3">
+            <label for="name" class="form-label">Tên tour</label>
+            <input type="text" class="form-control" value="{{ tours.name }}" id="name" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Mô tả</label>
+            <textarea class="form-control" id="description" name="description">{{ tours.description }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="adress" class="form-label">Địa chỉ</label>
+            <input type="text" class="form-control" value="{{ tours.address }}" id="adress" name="adress">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Giá</label>
+            <input type="text" class="form-control" value="{{ tours.price }}" id="price" name="price">
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Ảnh</label>
+            <input type="text" class="form-control" value="{{ tours.image }}" id="image" name="image">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Lưu lại</button>
+    </form>
+</div>
