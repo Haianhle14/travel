@@ -19,7 +19,10 @@ const Tour = new Schema(
   );
 
 //Add plugin
-Tour.plugin(mongooseDelete);
+Tour.plugin(mongooseDelete, { 
+    deletedAt: true,
+    overrideMethods: 'all'
+ });
 mongoose.plugin(slug);
 
 module.exports = mongoose.model('Tour', Tour);

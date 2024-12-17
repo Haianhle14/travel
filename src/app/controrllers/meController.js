@@ -8,6 +8,13 @@ class MeController {
             .catch(next);
         
     }
+
+    //[GET] me/trash/tours
+    trashTours(req, res, next) {
+        Tour.findWithDeleted({deleted:true}).lean()
+        .then(tours => res.render('me/trash-tours', { tours }))
+        .catch(next);
+    }
     
 }
 

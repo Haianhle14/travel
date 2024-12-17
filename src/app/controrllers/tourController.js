@@ -30,11 +30,28 @@ class TourController {
             .catch(next)
     }
 
+    //[DELETE] /tours/id:
     destroy(req, res, next) {
         Tour.delete({_id: req.params.id}, req.body)
             .then(()=>res.redirect('back'))
             .catch(next);
     }
+    
+    //[DELETE] /tours/id:/force
+    forceDestroy(req, res, next) {
+        Tour.deleteOne({_id: req.params.id}, req.body)
+            .then(()=>res.redirect('back'))
+            .catch(next);   
+    }
+
+    //[PATCH] /tours/id:/restore
+    restore(req, res, next) {
+        Tour.restore({_id: req.params.id}, req.body)
+            .then(()=>res.redirect('back'))
+            .catch(next);
+    }
+
+    
 
     //[POST] /tours/store
     store(req, res, next) {

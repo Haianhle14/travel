@@ -1,0 +1,96 @@
+<div class="mt-4">
+    <div>
+      <a href="/me/store/tours">Danh sách tour</a>
+      <h3>tour đã xóa</h3>
+    </div>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tên tour</th>
+                <th scope="col">Địa chỉ</th>
+                <th scope="col" colspan="1">Thời gian tạo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each tours}}
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.address}}</td>
+                <td>{{this.createdAt}}</td>
+                <td>
+                    <a href="" class="btn btn-link btn-restore" data-id="{{this._id}}">Khôi phục</a>
+                    <a href="" class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-tour-modal">Xóa vĩnh viễn</a>
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+              <td class="text-center" colspan="5">
+                  Thùng rác trống.
+                  <a href="/me/store/tours">Danh sách tour</a>
+              </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+
+{{!-- Confirm delete tour --}}
+
+<div id="delete-tour-modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xóa tour?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Hành động này không thể khôi phục. Bạn vẫn muốn xóa tour này?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button id="btn-delete-tour"  type="button" class="btn btn-danger ">Xóa vĩnh viễn</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<form name="delete-tour-form" method="POST" ></form>
+<form name="restore-tour-form" method="POST" ></form>
+
+
+
+
+<script>
+    var tourId;
+    var deleteForm = document.forms['delete-tour-form'];
+    var restoreForm = document.forms['restore-tour-form'];
+    var btnDeleteTour = document.getElementById('btn-delete-tour');
+    var restoreBtn = $('.btn-restore');
+    
+    //when dialog comfirm clicked
+    var exampleModal = document.getElementById('delete-tour-modal')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget
+        tourId = button.getAttribute('data-id');
+    })
+
+    //when delete tour btn clicked
+    btnDeleteTour.onclick = function () {
+        deleteForm.action = '/tours/' + tourId +'/force?_method=DELETE';
+        deleteForm.submit();
+    }
+
+    //restored btn clicked
+    restoreBtn.click(function(e){
+      e.preventDefault();
+
+      var tourId = $(this).data('id');
+     restoreForm.action = '/tours/' + tourId +'/restore?_method=PATCH';
+     restoreForm.submit();
+    });
+</script>
+
